@@ -9,6 +9,8 @@ const bodyParser=require('body-parser');
 connectDB();
 
 const transactions=require('./routes/transactions');
+const users=require('./routes/users');
+const auth=require('./routes/auth');
 const app=express();
 app.use(express.json());
 if(process.env.NODE_ENV==='development'){
@@ -16,6 +18,9 @@ if(process.env.NODE_ENV==='development'){
 
 }
 app.use('/api/v1/transactions',transactions);
+app.use('/api/v1/users',users);
+app.use('/api/v1/auth',auth);
+
 //Serve static assets if in production
 if(process.env.NODE_ENV==='production'){
     //set static folder

@@ -1,11 +1,12 @@
 const express=require('express');
 const router=express.Router();
 const {getTransactions,addTransactions,deleteTransactions}=require('../controllers/transController');
+const auth =require('../middleware/Auth');
 router.route('/')
 
 .get(getTransactions)
-.post(addTransactions);
+.post(auth,addTransactions);
 
 router.route('/:id')
-.delete(deleteTransactions);
+.delete(auth,deleteTransactions);
 module.exports= router;
